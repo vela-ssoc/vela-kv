@@ -53,6 +53,8 @@ func (b *Bucket) incr(key string, n int) *Response {
 	data := b.EncodeBody(func(body *kind.JsonEncoder) {
 		body.KV("key", key)
 		body.KV("n", n)
+		body.KV("audit", b.Audit)
+		body.KV("reply", b.Reply)
 		body.KV("lifetime", int64(b.TTL))
 	})
 
